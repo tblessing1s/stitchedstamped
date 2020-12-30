@@ -6,7 +6,6 @@ plugins {
 
 group = 'com.stitchedstamped'
 version = '0.0.1-SNAPSHOT'
-jar.enabled = true
 
 configurations {
     compileOnly {
