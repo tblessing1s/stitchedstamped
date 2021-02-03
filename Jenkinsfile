@@ -6,7 +6,7 @@ pipeline {
             stage('Building our image') {
                 steps {
                     script {
-                        dockerImage = docker.build "tblessin/stitchedstamped:$BUILD_NUMBER"
+                        dockerImage = docker.build "tblessin/stitchedstamped:latest"
                     }
                 }
             }
