@@ -1,6 +1,9 @@
 pipeline {
     agent {
-        label 'docker'
+//         label 'docker'
+        dockerfile{
+            dir 'src'
+        }
     }
     stages {
             stage('Building our image') {
