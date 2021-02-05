@@ -6,7 +6,7 @@ COPY . .
 
 USER root
 
-RUN gradle clean test build --no-daemon --console plain
+RUN ./gradlew clean test build --no-daemon --console plain
 
 
 FROM adoptopenjdk:11-jre-hotspot as RUNTIME
