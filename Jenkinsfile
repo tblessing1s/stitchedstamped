@@ -1,9 +1,6 @@
 pipeline {
     agent {
-        dockerfile {
-            dir 'stitchedstamped'
-            filename 'Dockerfile.sdk'
-        }
+        docker 'gradle:jdk11'
     }
     stages {
             stage('Building our image') {

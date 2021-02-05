@@ -1,3 +1,0 @@
-FROM gradle:jdk11 as BUILD
-
-ENV PS_MODULE=stitchedstamped
