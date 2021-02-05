@@ -2,7 +2,6 @@ pipeline {
     agent {
 //         label 'docker'
         dockerfile{
-            dir 'src'
             filename 'Dockerfile.sdk'
         }
     }
