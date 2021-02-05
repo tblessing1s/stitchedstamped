@@ -1,8 +1,7 @@
 pipeline {
     agent {
-//         label 'docker'
-        dockerfile{
-            dir '.'
+        dockerfile {
+            dir 'stitchedstamped'
             filename 'Dockerfile.sdk'
         }
     }
