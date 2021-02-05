@@ -1,20 +1,20 @@
 FROM gradle:jdk11 as BUILD
 
-WORKDIR /app
-
-COPY . .
-
-USER root
-
-RUN ./gradlew clean test build --no-daemon --console plain
-
+ENV APP_HOME=/usr/app/
+WORKDIR $APP_HOME
+COPY build.gradle gradlew $APP_HOME
+COPY gradle $APP_HOME/gradle
+RUN ./gradlew build || return 0
 
 FROM adoptopenjdk:11-jre-hotspot as RUNTIME
-VOLUME /tmp
-ARG JAVA_OPTS
-ENV JAVA_OPTS=$JAVA_OPTS
+
 COPY --from=BUILD build/libs/*.jar stitchedstamped.jar
+
+WORKDIR /app
+
 EXPOSE 8086
+
+ENV APP_FILES="/app"
 #ENTRYPOINT exec java $JAVA_OPTS -jar stitchedstamped.jar
 # For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
-ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar stitchedstamped.jar
+CMD java -jar app.jar -javaagent:agent.jar

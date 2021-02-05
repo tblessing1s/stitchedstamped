@@ -6,7 +6,9 @@ pipeline {
             stage('Building our image') {
                 steps {
                     script {
-                        dockerImage = docker.build "tblessin/stitchedstamped:latest"
+                        sh '''
+                            ./gradlew build jibDockerBuild
+                        '''
                     }
                 }
             }
