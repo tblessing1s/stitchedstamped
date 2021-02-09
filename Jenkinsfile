@@ -7,6 +7,7 @@ pipeline {
                 steps {
                     script {
                         sh '''
+                            ./gradlew clean
                             ./gradlew build jibDockerBuild --image=tblessin/stitchedstamped
                         '''
                     }
