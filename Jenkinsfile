@@ -25,7 +25,7 @@ pipeline {
                 ]) {
                     sh '''
                            docker logout
-                           docker login -u $username -p $password
+                           docker login -u username -p password
                            docker push "tblessin/stitchedstamped"
                       '''
                 }
