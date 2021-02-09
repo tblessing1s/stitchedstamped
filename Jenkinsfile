@@ -9,6 +9,11 @@ pipeline {
             string(defaultValue: 'Octopus', description: '', name: 'ServerId', trim: true)
         }
     stages {
+        stage("Env Variables") {
+            steps {
+                sh "printenv"
+            }
+        }
         stage('Add tools') {
             steps {
                 tool('OctoCLI')
