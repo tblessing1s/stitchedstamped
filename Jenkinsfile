@@ -3,6 +3,11 @@ pipeline {
         label 'docker'
     }
     stages {
+        stage ('Add tools') {
+            steps {
+                tool('OctoCLI')
+            }
+        }
         stage('Building our image') {
             steps {
                 script {
