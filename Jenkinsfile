@@ -15,20 +15,19 @@ pipeline {
         }
         stage('Deploy our image') {
             steps {
-                script {
-                    // Assume the Docker Hub registry by passing an empty string as the first parameter
-                    withCredentials([
+                // Assume the Docker Hub registry by passing an empty string as the first parameter
+                withCredentials([
                         usernamePassword(
-                            credentialsId: 'dockerhub',
-                            usernameVariable: 'username',
-                            passwordVariable: 'password'
+                                credentialsId: 'dockerhub',
+                                usernameVariable: 'username',
+                                passwordVariable: 'password'
                         )
-                    ])
+                ]) {
                     sh '''
-                                 docker logout
-                                 docker login -u $username -p $password
-                                 docker push "tblessin/stitchedstamped"
-                                '''
+                           docker logout
+                           docker login -u $username -p $password
+                           docker push "tblessin/stitchedstamped"
+                      '''
                 }
             }
         }
