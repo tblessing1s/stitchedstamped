@@ -7,7 +7,7 @@ pipeline {
                 steps {
                     script {
                         sh '''
-                            ./gradlew build jibDockerBuild
+                            ./gradlew build jibDockerBuild --image=tblessin/stitchedstamped
                         '''
                     }
                 }
@@ -16,8 +16,11 @@ pipeline {
                         steps {
                             script {
                                 // Assume the Docker Hub registry by passing an empty string as the first parameter
-                                docker.withRegistry('' , 'dockerhub') {
-                                    dockerImage.push()
+                                sh '''
+                                 docker logout
+                                 docker login -u tblessin -p Cardinals3123!
+                                 docker push "tblessin/stitchedstamped"
+                                '''
                                 }
                             }
                         }
