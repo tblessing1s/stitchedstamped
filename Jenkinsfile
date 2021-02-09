@@ -19,7 +19,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     sh '''
                            docker logout
-                           docker login -u username -p password
+                           docker login -u $USERNAME -p $PASSWORD
                            docker push "tblessin/stitchedstamped"
                       '''
                 }
