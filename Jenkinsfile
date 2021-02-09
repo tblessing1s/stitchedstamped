@@ -16,13 +16,7 @@ pipeline {
         stage('Deploy our image') {
             steps {
                 // Assume the Docker Hub registry by passing an empty string as the first parameter
-                withCredentials([
-                        usernamePassword(
-                                credentialsId: 'dockerhub',
-                                usernameVariable: 'username',
-                                passwordVariable: 'password'
-                        )
-                ]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     sh '''
                            docker logout
                            docker login -u username -p password
